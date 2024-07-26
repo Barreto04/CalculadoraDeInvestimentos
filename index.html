@@ -11,26 +11,27 @@
 <body class="h-[100dvh] grid grid-cols-3 grid-rows-2">
   <aside class="bg-green-600 row-span-2 flex flex-col justify-between py-5 px-2">
     <h1 class="text-2xl font-bold px-10 py-3">Calculadora de Investimentos</h1>
-    <form class="w-full">
+    <form id="investment-form" class="w-full">
       <div class="flex w-full flex-col px-6 my-2">
         <label for="starting-amount">Investimento inicial</label>
         <div class="flex">
-          <input value="R$" class="w-1/6 text-center rounded-l-lg" type="text"  disabled>
-          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0.00" id="starting-amount">
+          <input value="R$" class="w-1/6 text-center rounded-l-lg" type="text" disabled>
+          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0.00" id="starting-amount" required>
         </div>
       </div>
       <div class="flex w-full flex-col px-6 my-2">
-        <label for="addicional-contricuition">Aportes Adicionais</label>
+        <label for="addicional-contribution">Aportes Adicionais</label>
         <div class="flex">
-          <input value="R$" class="w-1/6 text-center rounded-l-lg" type="text"  disabled>
-          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0.00" id="addicional-contricuition">
+          <input value="R$" class="w-1/6 text-center rounded-l-lg" type="text" disabled>
+          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0.00" id="addicional-contribution">
         </div>
       </div>
       <div class="flex w-full flex-col px-6 my-2">
         <label for="time-amount">Prazo</label>
         <div class="flex">
-          <input type="text" class="w-4/6 px-2 rounded-l-lg" placeholder="0" id="time-amount">
-          <select id="time-amount-period" class="w-2/6 border-l-2 border-emerald-600 rounded-r-lg text-center hover:bg-green-600 hover:text-slate-200">
+          <input type="text" class="w-4/6 px-2 rounded-l-lg" placeholder="0" id="time-amount" required>
+          <select id="time-amount-period"
+            class="w-2/6 border-l-2 border-emerald-600 rounded-r-lg text-center hover:bg-green-600 hover:text-slate-200">
             <option value="monthly">Mensal</option>
             <option value="yearly">Anual</option>
           </select>
@@ -40,8 +41,9 @@
         <label for="return-rate">Rentabilidade</label>
         <div class="flex">
           <input value="%" class="w-1/6 text-center rounded-l-lg" type="text" disabled>
-          <input type="text" class="w-3/6 px-2" placeholder="0" id="return-rate">
-          <select id="evaluation-period" class="w-2/6 border-l-2 border-emerald-600 rounded-r-lg text-center hover:bg-green-600 hover:text-slate-200">
+          <input type="text" class="w-3/6 px-2" placeholder="0" id="return-rate" required>
+          <select id="evaluation-period"
+            class="w-2/6 border-l-2 border-emerald-600 rounded-r-lg text-center hover:bg-green-600 hover:text-slate-200">
             <option value="monthly">Mensal</option>
             <option value="yearly">Anual</option>
           </select>
@@ -51,18 +53,21 @@
         <label for="tax-rate">Impostos sobre lucro</label>
         <div class="flex">
           <input value="%" class="w-1/6 text-center rounded-l-lg" type="text" disabled>
-          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0" id="tax-rate">
+          <input type="text" class="w-5/6 px-2 rounded-r-lg" placeholder="0" id="tax-rate" required>
         </div>
       </div>
     </form>
     <div class="flex h-12 px-6 my-8 w-full gap-3">
-      <button class="w-1/2 rounded-lg bg-emerald-950 text-slate-200 hover:bg-emerald-800">Calcular</button>
+      <button id="calculate-results"
+        class="w-1/2 rounded-lg bg-emerald-950 text-slate-200 hover:bg-emerald-800" form="investment-form">Calcular</button>
       <button class="w-1/2 rounded-lg bg-green-500 hover:bg-emerald-700">Limpar</button>
     </div>
   </aside>
   <main>
     <p>resultados</p>
   </main>
+
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>
