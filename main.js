@@ -21,6 +21,10 @@ function formatCurrency(value) {
     return value.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
 };
 
+function formatCurrencyToGraph(value) {
+    return value.toFixed(2);
+};
+
 function renderProgression(evt) {
     evt.preventDefault();
     if (document.querySelector(".error")) {
@@ -46,7 +50,7 @@ function renderProgression(evt) {
         returnRatePeriod
     );
 
-    /* const finalInvestmentObject = returnsArray[returnsArray.length - 1];
+    const finalInvestmentObject = returnsArray[returnsArray.length - 1];
 
     finalMoneyChartReference = new Chart(finalMoneyChart, {
         type: 'doughnut',
@@ -79,14 +83,14 @@ function renderProgression(evt) {
                 {
                     label: 'Total Investido',
                     data: returnsArray.map((investmentObject) =>
-                        formatCurrency(investmentObject.investedAmount)
+                        formatCurrencyToGraph(investmentObject.investedAmount)
                     ),
                     backgroundColor: 'rgb(255, 99, 132)',
                 },
                 {
                     label: 'Retorno do Investimento',
                     data: returnsArray.map((investmentObject) =>
-                        formatCurrency(investmentObject.interestReturns)
+                        formatCurrencyToGraph(investmentObject.interestReturns)
                     ),
                     backgroundColor: 'rgb(54, 162, 235)',
                 },
@@ -103,7 +107,7 @@ function renderProgression(evt) {
                 },
             },
         },
-    }); */
+    });
 
     createTable(columnsArray, returnsArray, "results-table");
 }
@@ -165,6 +169,19 @@ for (const formElement of form) {
         formElement.addEventListener("blur", validateInput);
     }
 }
+
+const mainEl = document.querySelector("main");
+const carouselEl = document.getElementById("carousel");
+const previousButton = document.getElementById("slide-arrow-previous");
+const nextButton = document.getElementById("slide-arrow-next");
+
+nextButton.addEventListener("click", () => {
+    carouselEl.scrollLeft += mainEl.clientWidth;
+});
+
+previousButton.addEventListener("click", () => {
+    carouselEl.scrollLeft -= mainEl.clientWidth;
+});
 
 form.addEventListener("submit", renderProgression);
 
