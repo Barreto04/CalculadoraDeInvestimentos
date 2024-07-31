@@ -1,5 +1,6 @@
 import { generateReturnsArray } from "./investmentGoals";
 import { Chart } from "chart.js/auto";
+import { createTable } from "./table";
 
 const finalMoneyChart = document.getElementById("final-money-distribution")
 const progressionChart = document.getElementById("progression")
@@ -8,9 +9,17 @@ const clearFormButton = document.getElementById("clear-form");
 let finalMoneyChartReference = {};
 let progressionChartReference = {};
 
+const columnsArray = [
+    {columnLabel:"Mês", acessor: "month"},
+    {columnLabel:"Total Investido", acessor: "investedAmount", format: (numberInfo) => formatCurrency(numberInfo)},
+    {columnLabel:"Rendimento Mensal", acessor: "interestReturns", format: (numberInfo) => formatCurrency(numberInfo)},
+    {columnLabel:"Rendimento Total", acessor: "totalInterestReturns", format: (numberInfo) => formatCurrency(numberInfo)},
+    {columnLabel:"Quantia Total", acessor: "totalAmount", format: (numberInfo) => formatCurrency(numberInfo)},
+];
+
 function formatCurrency(value) {
-    return value.toFixed(2);
-}
+    return value.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
+};
 
 function renderProgression(evt) {
     evt.preventDefault();
@@ -37,7 +46,7 @@ function renderProgression(evt) {
         returnRatePeriod
     );
 
-    const finalInvestmentObject = returnsArray[returnsArray.length - 1];
+    /* const finalInvestmentObject = returnsArray[returnsArray.length - 1];
 
     finalMoneyChartReference = new Chart(finalMoneyChart, {
         type: 'doughnut',
@@ -94,7 +103,9 @@ function renderProgression(evt) {
                 },
             },
         },
-    });
+    }); */
+
+    createTable(columnsArray, returnsArray, "results-table");
 }
 
 function isObjectEmpty(obj) {
@@ -155,6 +166,6 @@ for (const formElement of form) {
     }
 }
 
-// form.addEventListener("submit", renderProgression);
+form.addEventListener("submit", renderProgression);
 
 clearFormButton.addEventListener("click", clearForm);
