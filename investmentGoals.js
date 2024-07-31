@@ -20,7 +20,7 @@ export function generateReturnsArray(
     const finalTimeHorizon = timePeriod === 'monthly' ? timeHorizon : timeHorizon * 12;
 
     const referenceInvestmentObject = {
-        investedAmounte: startingAmount,
+        investedAmount: startingAmount,
         interestReturns: 0,
         totalInterestReturns: 0,
         month: 0,
